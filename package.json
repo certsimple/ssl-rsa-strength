@@ -1,19 +1,19 @@
 {
-  "name": "crypto-strength",
+  "name": "ssl-rsa-strength",
   "version": "0.0.1",
-  "description": "Calculate strength of asymettric ciphers",
+  "description": "Measure the relative strength of asymmetric crypto, e.g. RSA keys.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+	"test": "mocha"
   },
   "author": "Mike MacCana <mike.maccana@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "big-integer": "^1.4.4"
+	"big-integer": "^1.4.4"
   },
   "devDependencies": {},
   "keywords": [
-    "crypto",
-    "math"
+	"crypto",
+	"math"
   ]
 }

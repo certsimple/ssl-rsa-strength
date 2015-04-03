@@ -4,13 +4,11 @@ Asymmetric ciphers like RSA are evaluated by National Institute of Standards and
 
 This module implements the technique used by NIST (a General Number Field Sieve), allowing you to compare the relative strength of different RSA modulus sizes (RSA 1024, 2048, 4096, etc) as if they were symmetric ciphers.
 
-> $$\exp\left( \left(\sqrt[3]{\frac{64}{9}} + o(1)\right)(\ln n)^{\frac{1}{3}}(\ln \ln n)^{\frac{2}{3}}\right)$$
-
 In short: if you're interested in just how much additional strength using a 4096 or larger key will get you, this module is for you.
 
-## Drawbacks to using larger key sizes
+Keep in mind there are also [considerable drawbacks in using a 4096 bit key](https://certsimple.com/blog/4096-bit-keys), including slower handshakes affecting the time taken for browsers to connect, as well as increased CPU usage on both the server and the browser.
 
-There are also [drawbacks in using a 4096 bit key](https://certsimple.com/blog/4096-bit-keys), including slower handshakes affecting the time taken for browsers to connect, as well as increased CPU usage on both the server and the browser.
+See 'Interpreting the results' below.
 
 ## Usage
 
@@ -52,11 +50,13 @@ In addition: the original NIST cypher rounded down to commonly used symmetric ke
 
 	npm test
 
-The values are checked against the Mathematica implementation from Cryto StackExchange mentioned below.
+The values are checked against the Mathematica implementation from Crypto StackExchange mentioned below.
 
 ## Recommended Reading
 
 The original [National Institute of Standards and Technology paper](http://csrc.nist.gov/publications/nistpubs/800-57/sp800-57_part1_rev3_general.pdf)
+
+[The number field sieve by Arjen K. Lenstra](http://www.iai.uni-bonn.de/~adrian/nfs/lenstra90number.pdf)
 
 In particular, these two threads on [Crypto StackExchange](http://crypto.stackexchange.com) have excellent discussion used in researching the development of this module:
 

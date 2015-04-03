@@ -10,7 +10,7 @@ In short: if you're interested in just how much additional strength using a 4096
 
 ## Drawbacks to using larger key sizes
 
-There are also [drawbacks in using a 4096 bit key](), including slower handshakes affecting the time taken for browsers to connect, as well as increased CPU usage on both the server and the browser.
+There are also [drawbacks in using a 4096 bit key](https://certsimple.com/blog/4096-bit-keys), including slower handshakes affecting the time taken for browsers to connect, as well as increased CPU usage on both the server and the browser.
 
 ## Usage
 
@@ -28,21 +28,21 @@ Modulus is what is commonly referred to as key size, eg, 2048, 4096 etc.
 
 ### OpenSSL default key size (non-EV)
 
-    getRSAStrength(512);
+  getRSAStrength(512);
 
 ### LibreSSL default key size (non-EV)
 
-    getRSAStrength(1024);
+  getRSAStrength(1024);
 
 ### Minimum for a EV SSL certificate per cabforum guidelines
 
-    getRSAStrength(2048);
+  getRSAStrength(2048);
 
 ## Interpreting the results
 
 Results should be read as if comparing a symmetric cipher, eg, a strength of 116 bits means you theoretically have 2^116 possibilities to bruteforce.
 
-Why theoretically? **The GNFS is a heuristic: it's a tool to help you measure the relative strengths of different RSA key sizes but it is not exact.** See [The number field sieve by Arjen K. Lenstra](http://www.iai.uni-bonn.de/~adrian/nfs/lenstra90number.pdf) page 5,section 3 for further discussion.
+Why theoretically? **The GNFS is a heuristic: it's a tool to help you measure the relative strengths of different RSA key sizes but it is not exact**. See [The number field sieve by Arjen K. Lenstra](http://www.iai.uni-bonn.de/~adrian/nfs/lenstra90number.pdf) page 5,section 3 for further discussion.
 
 Implementation details, future vulnerabilities in RSA, and other factors can affect the strength of an RSA key. The attack that breaks RSA 2048 could also break RSA 4096.
 

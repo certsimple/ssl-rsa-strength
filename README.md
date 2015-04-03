@@ -4,11 +4,11 @@ Asymmetric ciphers like RSA are evaluated by National Institute of Standards and
 
 This module implements the technique used by NIST (a General Number Field Sieve), allowing you to compare the relative strength of different RSA modulus sizes (RSA 1024, 2048, 4096, etc) as if they were symmetric ciphers.
 
-In short: if you're interested in just how much additional strength using a 4096 or larger key will get you, this module is for you.
+In short: if you're interested in comparing the relative strengths of RSA key sizes, this module is for you.
 
-Keep in mind there are also [considerable drawbacks in using a 4096 bit key](https://certsimple.com/blog/4096-bit-keys), including slower handshakes affecting the time taken for browsers to connect, as well as increased CPU usage on both the server and the browser.
+Please also note that strength is only a small portion of choosing a key size: there are [considerable drawbacks in using a 4096 bit key](https://certsimple.com/blog/4096-bit-keys), including slower handshakes affecting the time taken for browsers to connect, as well as increased CPU usage on both the server and the browser.
 
-See 'Interpreting the results' below.
+See 'Interpreting the results' below for further information.
 
 ## Usage
 

@@ -12,29 +12,29 @@ See 'Interpreting the results' below for further information.
 
 ## Usage
 
-Then
+Just install:
 
-  npm -i ssl-rsa-strength
+	  npm install ssl-rsa-strength
 
 Then:
 
-  var getRSAStrength = require('ssl-rsa-strength');
+	  var getRSAStrength = require('ssl-rsa-strength');
 
-  getRSAStrength(modulus);
+	  getRSAStrength(modulus);
 
 Modulus is what is commonly referred to as key size, eg, 2048, 4096 etc.
 
 ### OpenSSL default key size (non-EV)
 
-  getRSAStrength(512);
+	  getRSAStrength(512);
 
 ### LibreSSL default key size (non-EV)
 
-  getRSAStrength(1024);
+	  getRSAStrength(1024);
 
 ### Minimum for a EV SSL certificate per cabforum guidelines
 
-  getRSAStrength(2048);
+	  getRSAStrength(2048);
 
 ## Interpreting the results
 
@@ -48,7 +48,7 @@ In addition: the original NIST cypher rounded down to commonly used symmetric ke
 
 ## Unit tests
 
-	npm test
+		npm test
 
 The values are checked against the Mathematica implementation from Crypto StackExchange mentioned below.
 

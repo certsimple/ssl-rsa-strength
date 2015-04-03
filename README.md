@@ -4,17 +4,27 @@ Asymmetric ciphers like RSA are evaluated by National Institute of Standards and
 
 This module implements the technique used by NIST (a General Number Field Sieve), allowing you to compare the relative strength of different RSA modulus sizes (RSA 1024, 2048, 4096, etc) as if they were symmetric ciphers.
 
+> $$\exp\left( \left(\sqrt[3]{\frac{64}{9}} + o(1)\right)(\ln n)^{\frac{1}{3}}(\ln \ln n)^{\frac{2}{3}}\right)$$
+
 In short: if you're interested in just how much additional strength using a 4096 or larger key will get you, this module is for you.
 
 ## Drawbacks to using larger key sizes
 
-There are also drawbacks in using a 4096 bit key, including slower handshakes affecting the time taken for browsers to connect, as well as increased CPU usage on both the server and the browser. See the CertSimple article for discussion on these topics.
+There are also [drawbacks in using a 4096 bit key](), including slower handshakes affecting the time taken for browsers to connect, as well as increased CPU usage on both the server and the browser.
 
 ## Usage
 
-    npm -i ssl-rsa-strength
+Then
 
-    var getRSAStrength = require('ssl-rsa-strength');
+  npm -i ssl-rsa-strength
+
+Then:
+
+  var getRSAStrength = require('ssl-rsa-strength');
+
+  getRSAStrength(modulus);
+
+Modulus is what is commonly referred to as key size, eg, 2048, 4096 etc.
 
 ### OpenSSL default key size (non-EV)
 
@@ -30,17 +40,28 @@ There are also drawbacks in using a 4096 bit key, including slower handshakes af
 
 ## Interpreting the results
 
-The GNFS is a heuristic: it's a tool to help you measure the relative strengths of different RSA key sizes but it is not exact. Implementation details, future vulnerabilities in RSA, and other factors can affect the strength of an RSA key. The attack that breaks RSA 2048 could also break RSA 4096.
+Results should be read as if comparing a symmetric cipher, eg, a strength of 116 bits means you theoretically have 2^116 possibilities to bruteforce.
+
+Why theoretically? **The GNFS is a heuristic: it's a tool to help you measure the relative strengths of different RSA key sizes but it is not exact.** See [The number field sieve by Arjen K. Lenstra](http://www.iai.uni-bonn.de/~adrian/nfs/lenstra90number.pdf) page 5,section 3 for further discussion.
+
+Implementation details, future vulnerabilities in RSA, and other factors can affect the strength of an RSA key. The attack that breaks RSA 2048 could also break RSA 4096.
 
 In addition: the original NIST cypher rounded down to commonly used symmetric key sizes to allow comparison with existing common symmetric cipher values - so you could say 'RSA 1024 is equivalent to AES 80', whereas this module gives the raw results.
+
+## Unit tests
+
+	npm test
+
+The values are checked against the Mathematica implementation from Cryto StackExchange mentioned below.
 
 ## Recommended Reading
 
 The original [National Institute of Standards and Technology paper](http://csrc.nist.gov/publications/nistpubs/800-57/sp800-57_part1_rev3_general.pdf)
 
-In particular, these two threads on [Crypto StackExchange](http://crypto.stackexchange.com) have an excellent discussion:
+In particular, these two threads on [Crypto StackExchange](http://crypto.stackexchange.com) have excellent discussion used in researching the development of this module:
 
  - [Security strength of RSA in relation with the modulus size](http://crypto.stackexchange.com/questions/8687/security-strength-of-rsa-in-relation-with-the-modulus-size/8692?noredirect=1#comment56473_8692)
 
  - [Why is the complexity of RSA-1024 80 bit and not 86 bit?](http://crypto.stackexchange.com/questions/10076/why-is-the-complexity-of-rsa-1024-80-bit-and-not-86-bit)
+
 

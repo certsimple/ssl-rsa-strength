@@ -4,9 +4,11 @@ Asymmetric ciphers like RSA are evaluated by National Institute of Standards and
 
 This module implements the technique used by NIST (a General Number Field Sieve), allowing you to compare the relative strength of different RSA modulus sizes (RSA 1024, 2048, 4096, etc) as if they were symmetric ciphers.
 
-In short: if you're interested in comparing the relative strengths of RSA key sizes, this module is for you.
+In short: **if you're interested in comparing the relative strengths of RSA key sizes, this module is for you**.
 
-Please also note that strength is only a small portion of choosing a key size: there are [considerable drawbacks in using a 4096 bit key](https://certsimple.com/blog/4096-bit-keys), including slower handshakes affecting the time taken for browsers to connect, as well as increased CPU usage on both the server and the browser.
+Please also note that strength is only a small portion of choosing a key size: there are [considerable drawbacks in using a 4096 bit key](https://certsimple.com/blog/measuring-ssl-rsa-keys), including slower handshakes affecting the time taken for browsers to connect, as well as increased CPU usage on both the server and the browser.
+
+This module now also includes **ECC cipher strength**.
 
 See 'Interpreting the results' below for further information.
 
@@ -18,23 +20,26 @@ Just install:
 
 Then:
 
-	  var getRSAStrength = require('ssl-rsa-strength');
+	  var getStrength = require('ssl-rsa-strength');
 
-	  getRSAStrength(modulus);
+	  getStrength.rsa(modulus);
+	  getStrength.ecc(pSize);
 
-Modulus is what is commonly referred to as key size, eg, 2048, 4096 etc.
+Modulus is, for RSA, what is commonly referred to as key size, eg, 2048, 4096 etc.
+
+pSize is, for ECC, what is commonly referred to as key size, eg, 256, 512 etc.
 
 ### OpenSSL default key size (non-EV)
 
-	  getRSAStrength(512);
+	  getStrength.rsa(512);
 
 ### LibreSSL default key size (non-EV)
 
-	  getRSAStrength(1024);
+	  getStrength.rsa(1024);
 
 ### Minimum for a EV SSL certificate per cabforum guidelines
 
-	  getRSAStrength(2048);
+	  getStrength.rsa(2048);
 
 ## Interpreting the results
 
@@ -54,7 +59,7 @@ The values are checked against the Mathematica implementation from Crypto StackE
 
 ## Recommended Reading
 
-The original [National Institute of Standards and Technology paper](http://csrc.nist.gov/publications/nistpubs/800-57/sp800-57_part1_rev3_general.pdf)
+The original [National Institute of Standards and Technology Special Publication 800-57 Recommendation for Key Management](http://csrc.nist.gov/publications/nistpubs/800-57/sp800-57_part1_rev3_general.pdf)
 
 [The number field sieve by Arjen K. Lenstra](http://www.iai.uni-bonn.de/~adrian/nfs/lenstra90number.pdf)
 

@@ -1,7 +1,7 @@
 {
   "name": "ssl-rsa-strength",
-  "version": "0.0.1",
-  "description": "Measure the relative strength of asymmetric crypto, e.g. RSA keys.",
+  "version": "1.0.0",
+  "description": "Measure the relative strength of asymmetric crypto, e.g. RSA and ECC keys.",
   "main": "index.js",
   "scripts": {
 	"test": "mocha"
